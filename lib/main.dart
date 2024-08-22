@@ -10,21 +10,21 @@ import 'data/server_info.dart';
 import 'global.dart';
 
 void main() async {
-  HttpOverrides.global = MyHttpOverrides();
+  //HttpOverrides.global = MyHttpOverrides();
   await Hive.initFlutter();
   Hive.registerAdapter(ServerInfoAdapter());
   boxServerInfo = await Hive.openBox<ServerInfo>('caimanager_server_info');
   runApp(const MainApp());
 }
 
-class MyHttpOverrides extends HttpOverrides {
-  @override
-  HttpClient createHttpClient(SecurityContext? context) {
-    return super.createHttpClient(context)
-      ..badCertificateCallback =
-          (X509Certificate cert, String host, int port) => true;
-  }
-}
+// class MyHttpOverrides extends HttpOverrides {
+//   @override
+//   HttpClient createHttpClient(SecurityContext? context) {
+//     return super.createHttpClient(context)
+//       ..badCertificateCallback =
+//           (X509Certificate cert, String host, int port) => true;
+//   }
+// }
 
 class MainApp extends StatelessWidget {
   const MainApp({super.key});
